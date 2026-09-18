@@ -10,7 +10,14 @@ client → NewAPI（鉴权 / 渠道路由 / 模型映射 / 计费 / 日志）
        ← { model, answers, usage }（TypeSafe 原生响应，原样返回）
 ```
 
-插件走 **TypeSafe 原生协议**，不提供也不伪装 `/v1/chat/completions`、`/v1/responses` 兼容。
+插件走 **TypeSafe 原生协议**，不提供也不伪装 `/v1/chat/completions`、`/v1/responses` 兼容；同时支持两种上游（按渠道 Base URL 自动识别）：
+
+| 上游 | Base URL | 说明 |
+| --- | --- | --- |
+| TypeSafe 原生 | `https://api.typesafe.ai` | 需要 TypeSafe key（console.typesafe.ai） |
+| Vercel AI Gateway | `https://ai-gateway.vercel.sh` | 用你现有的 `vck_` key，见下方「Vercel 渠道」 |
+
+两种上游下，客户端始终发送/接收 System One 原生格式，插件自动做 noul↔boolean、usage 命名等翻译。
 
 ## 安装（二选一）
 
@@ -49,6 +56,21 @@ client → NewAPI（鉴权 / 渠道路由 / 模型映射 / 计费 / 日志）
 ```
 
 新版本 Jev 发布时改 mapping 即可（如 `jev-latest -> jev-2.0.0`），无需改插件。
+
+## Vercel 渠道
+
+用 Vercel AI Gateway 的 `vck_` key：
+
+1. 类型 **Task Plugin (61)** / 插件 **TypeSafe AI**，Base URL `https://ai-gateway.vercel.sh`，Key 填 `vck_…`
+2. **Model Mapping**（必须，网关要自己的模型名）：
+
+   ```json
+   { "jev-latest": "typesafe-ai/jev", "jev-preview": "typesafe-ai/jev", "jev-1.13.0": "typesafe-ai/jev", "jev": "typesafe-ai/jev" }
+   ```
+
+3. 价格：网关标价 $0.04/Mtok 输入 —— `tier("base", u("input_tokens") * 0.04 / 1000000)`
+
+客户端调用方式完全不变（同样的 `/v1/systemone` 请求和响应）。
 
 ## 计费
 
