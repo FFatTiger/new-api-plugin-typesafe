@@ -63,8 +63,16 @@
         "jev-1.13.0",
         "jev"
       ],
-      "latest": "1.1.0",
+      "latest": "1.1.1",
       "versions": [
+        {
+          "version": "1.1.1",
+          "path": "plugins/tasks/typesafe/1.1.1/plugin.js",
+          "sha256": "e8ff5ad1fcf8794eb49358bdf438720c4b55e63d5b4639158c9ce72d4bff048b",
+          "minApiVersion": 1,
+          "kind": "task",
+          "baseUrl": "https://api.typesafe.ai"
+        },
         {
           "version": "1.1.0",
           "path": "plugins/tasks/typesafe/1.1.0/plugin.js",
