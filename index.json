@@ -1,0 +1,79 @@
+{
+  "indexVersion": 1,
+  "name": "FFatTiger Plugins",
+  "plugins": [
+    {
+      "key": "typesafe",
+      "name": "TypeSafe AI",
+      "iconFile": {
+        "path": "plugins/tasks/typesafe/icon.svg",
+        "sha256": "817a87dd82dfca93776518339a2587d00353c3dd520056a80609dc65d548d2f9"
+      },
+      "description": {
+        "en": "TypeSafe System One evaluation (Jev): typed questions about a state, answered with probabilities",
+        "zh": "TypeSafe System One 评估（Jev）：对 state 提出类型化问题，返回带概率的结构化答案"
+      },
+      "routes": [
+        {
+          "method": "POST",
+          "path": "/v1/systemone",
+          "type": "submit",
+          "decode": "evaluate",
+          "render": "evaluated"
+        }
+      ],
+      "usageSchema": {
+        "input_tokens": {
+          "type": "number",
+          "unit": "token",
+          "description": {
+            "en": "Input token unit price",
+            "zh": "输入 Token 单价"
+          }
+        },
+        "output_tokens": {
+          "type": "number",
+          "unit": "token",
+          "description": {
+            "en": "Output token unit price",
+            "zh": "输出 Token 单价"
+          }
+        }
+      },
+      "usageExamples": [
+        {
+          "label": "jev · 312 in / 48 out",
+          "facts": {
+            "input_tokens": 312,
+            "output_tokens": 48
+          }
+        },
+        {
+          "label": "jev · 8k in / 96 out",
+          "facts": {
+            "input_tokens": 8192,
+            "output_tokens": 96
+          }
+        }
+      ],
+      "usageProfiles": null,
+      "models": [
+        "jev-latest",
+        "jev-preview",
+        "jev-1.13.0",
+        "jev"
+      ],
+      "latest": "1.0.0",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "path": "plugins/tasks/typesafe/1.0.0/plugin.js",
+          "sha256": "4ff3fba1d5d419a16270077fa9fb2e6ed45e5aa21fa6c9dea10105318463f2b8",
+          "minApiVersion": 1,
+          "kind": "task",
+          "baseUrl": "https://api.typesafe.ai"
+        }
+      ]
+    }
+  ]
+}

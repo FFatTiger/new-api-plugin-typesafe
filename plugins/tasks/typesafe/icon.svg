@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <style>
+    .sq { fill: #475569; }
+    .stroke { stroke: #f8fafc; }
+    .fill { fill: #f8fafc; }
+    @media (prefers-color-scheme: dark) {
+      .sq { fill: #94a3b8; }
+      .stroke { stroke: #1e293b; }
+      .fill { fill: #1e293b; }
+    }
+  </style>
+  <rect class="sq" x="2" y="2" width="60" height="60" rx="14"/>
+  <path class="stroke" d="M17 31l8.5 8.5L45 20" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect class="fill" x="17" y="45" width="4" height="7" rx="2"/>
+  <rect class="fill" x="25" y="42" width="4" height="10" rx="2"/>
+  <rect class="fill" x="33" y="38" width="4" height="14" rx="2"/>
+</svg>
